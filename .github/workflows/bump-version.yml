@@ -17,15 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Bump patch version
-        run: |
-          node - <<'NODE'
-          const fs = require('fs');
-          const path = '.claude-plugin/plugin.json';
-          const obj = JSON.parse(fs.readFileSync(path, 'utf8'));
-          const [major, minor, patch] = obj.version.split('.').map(Number);
-          obj.version = `${major}.${minor}.${patch + 1}`;
-          fs.writeFileSync(path, JSON.stringify(obj, null, 2) + '\n');
-          NODE
+        run: node scripts/bump-version.js
 
       - name: Commit version bump
         run: |
