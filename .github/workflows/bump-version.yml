@@ -1,0 +1,36 @@
+name: bump-plugin-version
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+      - '.claude-plugin/**'
+      - 'README.md'
+
+jobs:
+  version-bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Bump patch version
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const path = '.claude-plugin/plugin.json';
+          const obj = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const [major, minor, patch] = obj.version.split('.').map(Number);
+          obj.version = `${major}.${minor}.${patch + 1}`;
+          fs.writeFileSync(path, JSON.stringify(obj, null, 2) + '\n');
+          NODE
+
+      - name: Commit version bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .claude-plugin/plugin.json
+          git commit -m "chore: bump plugin version" || exit 0
+          git push
