@@ -1,5 +1,5 @@
 ---
-name: jd-generator
+name: d2r-document-template
 description: Centralized skill for creating a single structured Job Description (JD) Word document in D2R AI Labs' fixed house format — header with logo and company name repeating on every page, an info table (Experience/Compensation/Role/Type/Location), and sections for Role Overview, Core Responsibilities, Must-Have Skills, Preferred Qualifications, Ideal Candidate, and Key Search Keywords. Use this skill whenever anyone asks to create, generate, or draft a job description, JD, role posting, or hiring document as a Word/.docx file, or mentions "JD template," "job description format," or building a JD "like the sample"/"like last time." Always interview the user for every field — never invent content, wording, or styling.
 license: Proprietary
 ---
