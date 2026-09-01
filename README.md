@@ -52,4 +52,4 @@ picks up the change by running:
   with GitHub).
 - **Generated `.docx` is missing the logo:** confirm `python-docx` is
   installed (`pip show python-docx`); the logo file ships inside the plugin,
-  so no separate download is needed.
+  so no separate download is needed. please.
