@@ -1,0 +1,10 @@
+{
+  "company_name": "D2R AI Labs",
+  "font_name": "Calibri",
+  "body_size_pt": 11,
+  "heading_sizes_pt": {"1": 16, "2": 13, "3": 12},
+  "heading_color_hex": "1F4E79",
+  "footer_text": "{company_name}",
+  "page_size": "Letter",
+  "logo_path": "d2r-logo.png"
+}
