@@ -1,7 +1,7 @@
 # D2R AI Labs — Claude Code Plugins
 
 Internal plugin marketplace for Claude Code. One-time setup per employee, then
-available in every project. please.
+available in every project.
 
 ## Install (one time per employee)
 
