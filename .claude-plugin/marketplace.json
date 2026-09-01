@@ -1,0 +1,13 @@
+{
+  "name": "my-plugins-marketplace",
+  "owner": {
+    "name": "D2R AI Labs"
+  },
+  "plugins": [
+    {
+      "name": "d2r-ai-labs",
+      "source": "./",
+      "description": "D2R AI Labs plugin with document template and JD document skills."
+    }
+  ]
+}

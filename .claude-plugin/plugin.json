@@ -4,5 +4,17 @@
   "description": "D2R AI Labs plugin with document template and JD document skills.",
   "author": {
     "name": "D2R AI Labs"
-  }
+  },
+  "skills": [
+    {
+      "name": "d2r-document-template",
+      "path": "./skills/d2r-document-template",
+      "description": "Centralized skill for creating a structured Job Description (JD) Word document in D2R AI Labs' fixed format with header, info table, and standard sections."
+    },
+    {
+      "name": "d2r-JD-document",
+      "path": "./skills/d2r-JD-document",
+      "description": "Generates corporate documents (.docx) with consistent corporate template formatting including Calibri font, heading styles, and footer."
+    }
+  ]
 }
