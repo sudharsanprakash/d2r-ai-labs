@@ -16,26 +16,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check if this is a version bump commit
-        id: check_bump
-        run: |
-          if git log -1 --pretty=%B | grep -q "chore: bump plugin version"; then
-            echo "is_bump=true" >> $GITHUB_OUTPUT
-          else
-            echo "is_bump=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Bump patch version
-        if: steps.check_bump.outputs.is_bump == 'false'
-        run: node scripts/bump-version.js
-
-      - name: Commit version bump
-        if: steps.check_bump.outputs.is_bump == 'false'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup git config
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .claude-plugin/plugin.json
-          git commit -m "chore: bump plugin version [skip ci]"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git main
+
+      - name: Bump patch version
+        run: node scripts/bump-version.js
+
+      - name: Commit and push version bump
+        run: |
+          if git diff --quiet .claude-plugin/plugin.json; then
+            echo "No version change needed"
+          else
+            git add .claude-plugin/plugin.json
+            git commit -m "chore: bump plugin version [skip ci]"
+            git push
+          fi
