@@ -25,11 +25,14 @@ jobs:
         run: node scripts/bump-version.js
 
       - name: Commit and push version bump
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if git diff --quiet .claude-plugin/plugin.json; then
             echo "No version change needed"
           else
             git add .claude-plugin/plugin.json
             git commit -m "chore: bump plugin version [skip ci]"
-            git push
+            git pull --rebase origin main || true
+            git push https://${{ github.actor }}:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
           fi
