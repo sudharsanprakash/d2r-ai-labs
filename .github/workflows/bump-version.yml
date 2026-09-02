@@ -12,7 +12,8 @@ on:
 jobs:
   version-bump:
     runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    # Skip if commit was made by github-actions bot
+    if: github.actor != 'github-actions[bot]'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,5 +35,7 @@ jobs:
           if ! git diff --quiet .claude-plugin/plugin.json; then
             git add .claude-plugin/plugin.json
             git commit -m "chore: bump plugin version [skip ci]"
-            git push
+            git push origin main
+          else
+            echo "No version changes detected"
           fi
