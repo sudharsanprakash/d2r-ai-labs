@@ -1,8 +1,19 @@
 #!/bin/sh
 
 changed_files=$(git diff --cached --name-only --diff-filter=ACMRTUXB | tr -d '\r')
+plugin_files=""
 
-plugin_files=$(printf '%s\n' "$changed_files" | grep -Ev '^(\.claude-plugin/plugin\.json|\.githooks/|scripts/bump-version\.js)$' || true)
+while IFS= read -r file; do
+  case "$file" in
+    .claude-plugin/plugin.json|.githooks/*|scripts/bump-version.js)
+      ;;
+    *)
+      plugin_files="$plugin_files$file\n"
+      ;;
+  esac
+done <<EOF
+$changed_files
+EOF
 
 if [ -n "$plugin_files" ]; then
   node scripts/bump-version.js
