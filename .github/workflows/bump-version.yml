@@ -9,6 +9,9 @@ on:
       - README.md
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   version-bump:
     runs-on: ubuntu-latest
