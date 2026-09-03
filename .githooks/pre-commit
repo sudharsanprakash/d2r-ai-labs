@@ -1,6 +1,6 @@
 #!/bin/sh
 
-changed_files=$(git diff --cached --name-only --diff-filter=ACMRTUXB)
+changed_files=$(git diff --cached --name-only --diff-filter=ACMRTUXB | tr -d '\r')
 
 plugin_files=$(printf '%s\n' "$changed_files" | grep -Ev '^(\.claude-plugin/plugin\.json|\.githooks/|scripts/bump-version\.js)$' || true)
 
