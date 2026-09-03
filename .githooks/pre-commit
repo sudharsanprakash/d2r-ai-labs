@@ -1,0 +1,12 @@
+#!/bin/sh
+
+changed_files=$(git diff --cached --name-only --diff-filter=ACMRTUXB)
+
+if printf '%s\n' "$changed_files" | grep -Eq '^\.claude-plugin/plugin\.json$'; then
+  exit 0
+fi
+
+if printf '%s\n' "$changed_files" | grep -Eq '^(skills/|README\.md$)'; then
+  node scripts/bump-version.js
+  git add .claude-plugin/plugin.json
+fi
