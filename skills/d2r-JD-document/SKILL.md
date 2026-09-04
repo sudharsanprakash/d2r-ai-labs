@@ -1,5 +1,5 @@
 ---
-name: creating-corporate-documents
+name: d2r-jd-document
 description: Use when creating a formal company document (report, memo, proposal) that must follow the corporate Word template for font and structure.
 ---
 
